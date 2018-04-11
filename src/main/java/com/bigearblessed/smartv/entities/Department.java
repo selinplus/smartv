@@ -2,10 +2,7 @@ package com.bigearblessed.smartv.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Department {
@@ -14,8 +11,8 @@ public class Department {
 	private String id;
 	
 	private String name;
-	@OneToOne
-	@MapsId
+	@OneToOne(optional = true)
+	@JoinColumn(name="parent",referencedColumnName="id")
 	private Department parent;
 	
 	private boolean isStandalone;
@@ -24,7 +21,7 @@ public class Department {
 	
 	private Date createdDate;
 	
-	private Date modeifyDate;
+	private Date modifyDate;
 	
 	public Department(String id) {
 		this.id = id;
@@ -71,11 +68,11 @@ public class Department {
 	}
 
 	public Date getModeifyDate() {
-		return modeifyDate;
+		return modifyDate;
 	}
 
-	public void setModeifyDate(Date modeifyDate) {
-		this.modeifyDate = modeifyDate;
+	public void setModeifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	public void setCustomer(boolean isCustomer) {

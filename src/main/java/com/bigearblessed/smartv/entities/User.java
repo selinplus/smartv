@@ -21,7 +21,6 @@ public class User {
 
     private boolean isOuter;
     @OneToOne
-    @MapsId
     private Department department;
     User() {}
 
