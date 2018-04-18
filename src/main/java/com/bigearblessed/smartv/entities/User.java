@@ -1,8 +1,14 @@
 package com.bigearblessed.smartv.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,8 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private String userid;
     private String username;
 
     @JsonIgnore
@@ -20,17 +25,69 @@ public class User {
     private List<Role> roles;
 
     private boolean isOuter;
-    @OneToOne
-    private Department department;
-    User() {}
+    @OneToOne(cascade=CascadeType.PERSIST)
+    private Department dept;
+    private String phone;
+    private String deptName;
+  
 
-    public User(String username, String password, List<Role> roles, Department department) {
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public User(String userid, String username, String password, List<Role> roles, boolean isOuter, Department dept,
+			String phone) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+		this.isOuter = isOuter;
+		this.dept = dept;
+		this.phone = phone;
+	}
+
+	public User() {}
+
+    public User(String userid,String username, String password, List<Role> roles, Department dept,String phone,String deptName) {
+    	this.userid = userid;
         this.username = username;
         this.password = password;
         this.roles = roles;
-        this.department = department;
+        this.dept = dept;
+        this.phone = phone;
+        this.deptName = deptName;
+   
     }
-
+    public User(String userid,String username, String password, Department dept,String phone,String deptName) {
+    	this.userid = userid;
+        this.username = username;
+        this.password = password;
+        this.dept = dept;
+        this.phone = phone;
+        this.deptName = deptName;
+    }
+    public User(String username, String password,String phone, Department dept) {
+        this.username = username;
+        this.password = password;
+        this.dept = dept;
+  
+        this.phone = phone;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -55,9 +112,14 @@ public class User {
         this.roles = roles;
     }
 
-    public Long getId() {
-        return id;
-    }
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 
 	public boolean isOuter() {
 		return isOuter;
@@ -67,14 +129,15 @@ public class User {
 		this.isOuter = isOuter;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public Department getDept() {
+		return dept;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setDept(Department dept) {
+		this.dept = dept;
 	}
-	
+
+
     
 }
 

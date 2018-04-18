@@ -40,7 +40,7 @@ public class CustomUserDetails implements UserDetails {
     private Collection<? extends GrantedAuthority> translate(List<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (Role role : roles) {
-            String name = role.getName().toUpperCase();
+            String name = role.getRoleName().toUpperCase();
             //Make sure that all roles start with "ROLE_"
             if (!name.startsWith("ROLE_"))
                 name = "ROLE_" + name;

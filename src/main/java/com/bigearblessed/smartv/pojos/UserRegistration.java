@@ -1,21 +1,71 @@
 package com.bigearblessed.smartv.pojos;
 
+import java.util.List;
+
+import com.bigearblessed.smartv.entities.Department;
+import com.bigearblessed.smartv.entities.Role;
 
 public class UserRegistration {
 
-    private String username;
+	private String userid;
+	private String username;
     private String password;
     private String passwordConfirmation;
-    private String deptId;
+    private String phone;
+    private Department dept;
+    private Role role;
+
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	
+
+
+	public Department getDept() {
+		return dept;
+	}
+
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
+
+	public UserRegistration(String userid, String username, String password, String passwordConfirmation, String phone,
+			Department dept) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.passwordConfirmation = passwordConfirmation;
+		this.phone = phone;
+		this.dept = dept;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
     public UserRegistration() {
     }
 
-    public UserRegistration(String username, String password, String passwordConfirmation, String deptId) {
-        this.username = username;
-        this.password = password;
-        this.passwordConfirmation = passwordConfirmation;
-        this.deptId = deptId;
-    }
 
     public String getUsername() {
         return username;
@@ -41,13 +91,15 @@ public class UserRegistration {
         this.passwordConfirmation = passwordConfirmation;
     }
 
-	public String getDeptId() {
-		return deptId;
-	}
 
-	public void setDeptId(String deptId) {
-		this.deptId = deptId;
+	public UserRegistration(String userid, String username, String password, String passwordConfirmation, String phone) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.passwordConfirmation = passwordConfirmation;
+		this.phone = phone;
+	
 	}
-    
     
 }

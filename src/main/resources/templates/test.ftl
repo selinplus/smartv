@@ -4,9 +4,9 @@
 
 </head>
 <body>
-   <form action="/login"  method="post">
+   <form action="/slogin"  method="post">
             <div>
-                <label for="username">账号</label>
+                <label for="username">账号76767668868</label>
                 <input type="text" class="form-control" name="username" placeholder="账号"/>
             </div>
             <div>

@@ -8,13 +8,11 @@ import javax.persistence.*;
 public class Department {
 
 	@Id
-	private String id;
+	private String deptId;
 	
-	private String name;
-	@OneToOne(optional = true)
-	@JoinColumn(name="parent",referencedColumnName="id")
-	private Department parent;
+	private String deptName;
 	
+
 	private boolean isStandalone;
 
 	private boolean isCustomer;
@@ -23,37 +21,90 @@ public class Department {
 	
 	private Date modifyDate;
 	
-	public Department(String id) {
-		this.id = id;
+   
+
+	private String supperDeptName;
+
+	@OneToOne(optional = true)
+	@JoinColumn(name="supperDeptId",referencedColumnName="deptId")
+	private Department supperDeptId;
+	public Department(String deptId, String deptName, Department supperDeptId, String supperDeptName) {
+		super();
+		this.deptId = deptId;
+		this.deptName = deptName;
+		this.supperDeptId = supperDeptId;
+		this.supperDeptName = supperDeptName;
 	}
+
+
+	public Department(Department supperDeptId) {
+		super();
+		this.supperDeptId = supperDeptId;
+	}
+
+
+	public Department(String deptId, String deptName) {
+		super();
+		this.deptId = deptId;
+		this.deptName = deptName;
+	}
+	
+	public String getSupperDeptName() {
+		return supperDeptName;
+	}
+	public Department getSupperDeptId() {
+		return supperDeptId;
+	}
+	public void setSupperDeptId(Department supperDeptId) {
+		this.supperDeptId = supperDeptId;
+	}
+	public void setSupperDeptName(String supperDeptName) {
+		this.supperDeptName = supperDeptName;
+	}
+
+
 
 	public Department() {
 		
 	}
-
-	public String getId() {
-		return id;
+    public Department(String deptId) {
+		this.deptId = deptId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+
+	public String getDeptId() {
+		return deptId;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	public Date getModifyDate() {
+		return modifyDate;
 	}
 
-	public Department getParent() {
-		return parent;
+
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
-	public void setParent(Department parent) {
-		this.parent = parent;
+
+
+
+
+	public String getDeptName() {
+		return deptName;
 	}
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
 
 	public boolean isStandalone() {
 		return isStandalone;
